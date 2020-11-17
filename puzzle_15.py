@@ -27,18 +27,17 @@ class Board:
     def draw(self):
         """ Draw current state of the game board. """
         os.system(CLEAR_SCREEN)
-        print('┌───' + '───┬───' * (self.size - 1) + '───┐')
-
-        for row in range(self.size):
-            current_row = [f'{tile:02}' if tile != self.end_state[-1][-1]
-                else '  ' for tile in self.current_state[row]]
-            print('│   ' + '   │   ' * (self.size - 1) + '   │')
-            print('│  ' + '  |  '.join(current_row) + '  │')
-            print('│   ' + '   │   ' * (self.size - 1) + '   │')
-            if row < self.size - 1:
-                print('├───' + '───┼───' * (self.size - 1) + '───┤')
-
-        print('└───' + '───┴───' * (self.size - 1) + '───┘')
+        for row in self.current_state:
+            print('┌──────┐' * self.size)
+            print('|      |' * self.size)
+            for number in row:
+                print('|  ', end='')
+                print(f'{number:02}' if number != self.end_state[-1][-1]
+                    else '  ', end='')
+                print('  |', end='')
+            print()
+            print('|      |' * self.size)
+            print('└──────┘' * self.size)
 
 
 def main():
